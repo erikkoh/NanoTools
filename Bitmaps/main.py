@@ -50,7 +50,7 @@ def create_polygon(num_sides, radius):
 
 
 #This was mostly stripped from the provided notbooks with small adjustments to fit the spesific problem
-def get_grid(sh,offset,spacing, f, size=1, num_sides = 3):
+def get_grid(sh,offset,spacing, f, size=1, num_sides = 3, start = 0):
     """ 
     Convenient for creating a millingpattern for 1D investigations.
     Parameters:
@@ -68,7 +68,7 @@ def get_grid(sh,offset,spacing, f, size=1, num_sides = 3):
     reference = np.zeros(sh)
     for i,j in enumerate(np.arange(offset, sh[0]-offset, spacing)):
         for k,l in enumerate(np.arange(offset, sh[1]-offset, spacing)):
-            element = f(k+num_sides,(i+1)*size)
+            element = f(k+num_sides,(i+1)*size+start)
             ex,ey = element.shape
             ngrid[l-ex//2:l+ex//2 + ex%2,j-ey//2:j+ey//2+ey%2] = element
             reference[l,j] = 1
@@ -76,7 +76,7 @@ def get_grid(sh,offset,spacing, f, size=1, num_sides = 3):
     return np.roll(np.invert(ngrid.astype(bool)), -com,axis=[0,1])
 
 
-def Test_plotting(sh=(512,512), offset=30, spacing=50, f = create_polygon, size=1, num_sides=3):
+def Test_plotting(sh=(512,512), offset=50, spacing=50, f = create_polygon, size=1, num_sides=3):
     plt.figure()
     plt.imshow(get_grid(sh,offset,spacing, f, size, num_sides))
     plt.show()
@@ -90,14 +90,19 @@ def save_numpy_to_bmp(arr, path):
     img = Image.fromarray(arr)
     img.save(path)
 
-def save_bitmaps(sh=(512,512), offset=60, spacing=150, f = create_polygon):
+def save_bitmaps(sh=(512,512), offset=60, spacing=120, f = create_polygon):
     os.makedirs("./image_files", exist_ok=True)
     dst_folder = os.path.join(os.getcwd(), 'image_files')
-    for i in range(4):
-        mask = get_grid(sh,offset,spacing,f, size=10, num_sides=3+i*3)
-        fname = f'00_shapes_shape{mask.shape}_numer_of_sides{3+i*3}.bmp'
+    for i in range(2):
+        mask = get_grid(sh,offset,spacing,f, size=5, num_sides=3+i*3)
+        fname = f'0{i}_shapes_l_shape{mask.shape}_numer_of_sides{3+i*3}.bmp'
+        save_numpy_to_bmp(mask, os.path.join(dst_folder, fname))
+    for i in range(2):
+        mask = get_grid(sh,offset,spacing,f, size=5, num_sides=3+i*3, start= 20)
+        fname = f'1{i}_shapes_r_shape{mask.shape}_numer_of_sides{3+i*3}.bmp'
         save_numpy_to_bmp(mask, os.path.join(dst_folder, fname))
     compass = get_compass(50, 3, 60)
     save_numpy_to_bmp(compass, os.path.join(dst_folder, '00_compass_{compass.shape}.bmp'))
 
+""" Test_plotting() """
 save_bitmaps()
