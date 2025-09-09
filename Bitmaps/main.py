@@ -88,6 +88,7 @@ def save_numpy_to_bmp(arr, path):
     """
     arr = arr.astype('uint8') * 255 if arr.dtype == bool else arr.astype('uint8')
     img = Image.fromarray(arr)
+    img = img.convert("RGB")
     img.save(path)
 
 def save_bitmaps(sh=(512,512), offset=60, spacing=120, f = create_polygon):
