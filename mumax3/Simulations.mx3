@@ -1,0 +1,41 @@
+Nx := 256
+Ny := 256
+Nz := 1
+setgridsize(Ny, Nx, Nz)
+c := 4e-9
+setcellsize(c, c, c)
+
+Msat  = 800e3
+Aex   = 13e-12
+alpha = 0.01
+m     = vortex(0,0)
+
+setgeom(imageShape("mask3.png"))
+minimize()
+save(m)
+
+setgeom(imageShape("mask4.png"))
+minimize()
+save(m)
+
+setgeom(imageShape("mask5.png"))
+minimize()
+save(m)
+
+setgeom(imageShape("mask6.png"))
+minimize()
+save(m)
+
+setgeom(imageShape("mask7.png"))
+minimize()
+save(m)
+
+setgeom(imageShape("mask8.png"))
+minimize()
+save(m)
+
+
+setgeom(imageShape("mask9.png"))
+minimize()
+save(m)
+
