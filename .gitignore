@@ -1,3 +1,4 @@
 # Byte-compiled / optimized .pyc files
 __pycache__/
 *.py[cod]
+converted_images/
