@@ -39,3 +39,14 @@ setgeom(imageShape("mask9.png"))
 minimize()
 save(m)
 
+setgeom(imageShape("mask10.png"))
+minimize()
+save(m)
+
+setgeom(imageShape("mask11.png"))
+minimize()
+save(m)
+
+setgeom(imageShape("mask12.png"))
+minimize()
+save(m)
