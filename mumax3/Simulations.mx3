@@ -8,7 +8,7 @@ setcellsize(c, c, c)
 Msat  = 800e3
 Aex   = 13e-12
 alpha = 0.01
-m     = vortex(0,0)
+m     = uniform(1,0,0)
 
 setgeom(imageShape("mask3.png"))
 minimize()
@@ -34,7 +34,6 @@ setgeom(imageShape("mask8.png"))
 minimize()
 save(m)
 
-
 setgeom(imageShape("mask9.png"))
 minimize()
 save(m)
@@ -44,9 +43,5 @@ minimize()
 save(m)
 
 setgeom(imageShape("mask11.png"))
-minimize()
-save(m)
-
-setgeom(imageShape("mask12.png"))
 minimize()
 save(m)
