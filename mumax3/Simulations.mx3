@@ -45,3 +45,7 @@ save(m)
 setgeom(imageShape("mask11.png"))
 minimize()
 save(m)
+
+setgeom(imageShape("mask_circle.png"))
+minimize()
+save(m)
